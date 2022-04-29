@@ -7,4 +7,12 @@ const (
 	UserAccessTokenUrl = "%s/v1.0/oauth2/userAccessToken"
 	UserInfo4UserAccessTokenUrl = "%s/v1.0/contact/users/me"
 
+	GetAccessTokenUrl = "%s/gettoken?appkey=%s&appsecret=%s"
+	// 部门列表
+	DepartmentUrl = "%s/topapi/v2/department/listsub?access_token=%s"
+	// 获取指定部门的userid列表
+	DepartmentUseridListUrl = "%s/topapi/user/listid?access_token=%s"
+	// 获取指定用户的详细信息
+	UserInfoUrl = "%s/topapi/v2/user/get?access_token=%s"
+
 )
