@@ -43,3 +43,14 @@ func main() {
 
 
 ```
+
+
+## 发送工作消息示例
+```
+curl -X POST \
+  'https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2?access_token=a3a63fc592083b2fb74bcc5f195015dd' \
+  -H 'content-type: application/json' \
+  -d '{"msg":{"msgtype":"text","text":{"content":"文本消息"}},"agent_id":"1605203268","userid_list":"manager4056"}
+'
+
+```

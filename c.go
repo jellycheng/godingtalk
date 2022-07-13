@@ -15,4 +15,7 @@ const (
 	// 获取指定用户的详细信息
 	UserInfoUrl = "%s/topapi/v2/user/get?access_token=%s"
 
+	// 发送工作通知
+	WorkNotifyMsgUrl = "%s/topapi/message/corpconversation/asyncsend_v2?access_token=%s"
+
 )

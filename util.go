@@ -39,6 +39,15 @@ func JsonUnmarshal(str string, obj interface{}) error  {
 	return json.Unmarshal([]byte(str), obj)
 }
 
+// 转成json字符串
+func ToJson(v interface{}) string {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return ""
+	}
+	return string(b)
+}
+
 func Debug(msg interface{})  {
 	fmt.Println(fmt.Sprintf("%+v", msg))
 }
