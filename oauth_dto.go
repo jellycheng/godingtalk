@@ -16,7 +16,6 @@ type UserAccessTokenRespDto struct {
 	CorpId       string `json:"corpId"` //所选企业corpId
 }
 
-
 type UserInfoRespDto struct {
 	DingTalkApiErrDto
 	Nick      string `json:"nick"` // 昵称
@@ -24,6 +23,6 @@ type UserInfoRespDto struct {
 	OpenID    string `json:"openId"`
 	Email     string `json:"email"`
 	AvatarUrl string `json:"avatarUrl"` // 头像地址
-	Mobile    string `json:"mobile"` // 手机号
+	Mobile    string `json:"mobile"`    // 手机号
 	StateCode string `json:"stateCode"` // 手机号对应的国家号
 }

@@ -18,5 +18,6 @@
 go.sum
 .DS_Store
 *.log
+cjs.go
 cjs_test.go
 demo/

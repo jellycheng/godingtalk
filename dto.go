@@ -7,8 +7,8 @@ type DingTalkApiErrDto struct {
 }
 
 type DingTalkApiErr2Dto struct {
-	Errcode int `json:"errcode"`
-	Errmsg string `json:"errmsg"`
+	Errcode int    `json:"errcode"`
+	Errmsg  string `json:"errmsg"`
 }
 
 type RequestIdDto struct {
@@ -18,11 +18,11 @@ type RequestIdDto struct {
 type AccessTokenRespDto struct {
 	DingTalkApiErr2Dto
 	AccessToken string `json:"access_token"`
-	ExpiresIn int `json:"expires_in"`
+	ExpiresIn   int    `json:"expires_in"`
 }
 
 type DingTalkApiErr3Dto struct {
-	Errcode int `json:"errcode"`
-	Errmsg string `json:"errmsg"`
+	Errcode   int    `json:"errcode"`
+	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"request_id"`
 }

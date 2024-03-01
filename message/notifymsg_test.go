@@ -9,9 +9,9 @@ import (
 )
 
 // go test -run=TestSendWorkNotifyReqDto
-func TestSendWorkNotifyReqDto(t *testing.T)  {
+func TestSendWorkNotifyReqDto(t *testing.T) {
 	err := env.LoadEnv2DataManage("../example/.env")
-	if err!=nil {
+	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
@@ -31,7 +31,7 @@ func TestSendWorkNotifyReqDto(t *testing.T)  {
 	req2 := SendWorkNotifyReqDto{}
 	req2.AgentID = globalEnv.GetString("DingTalk_1_AgentId")
 	req2.UseridList = globalEnv.GetString("UseridListDemo")
-	markdownText :=`
+	markdownText := `
 标题
 # 一级标题
 ## 二级标题
@@ -65,7 +65,7 @@ func TestSendWorkNotifyReqDto(t *testing.T)  {
 		Msgtype: "markdown",
 		Markdown: &MarkdownMsgDto{
 			Title: "消息标题01",
-			Text: markdownText,
+			Text:  markdownText,
 		}}
 	resp2 := godingtalk.ToJson(req2)
 	fmt.Println(resp2)
@@ -75,7 +75,7 @@ func TestSendWorkNotifyReqDto(t *testing.T)  {
 // go test -run=TestSendWorkMsg
 func TestSendWorkMsg(t *testing.T) {
 	err := env.LoadEnv2DataManage("../example/.env")
-	if err!=nil {
+	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
@@ -84,7 +84,7 @@ func TestSendWorkMsg(t *testing.T) {
 	req := SendWorkNotifyReqDto{}
 	req.AgentID = globalEnv.GetString("DingTalk_1_AgentId")
 	req.UseridList = globalEnv.GetString("UseridListDemo")
-	markdownText :=`
+	markdownText := `
 标题
 # 一级标题
 ## 二级标题
@@ -106,7 +106,7 @@ func TestSendWorkMsg(t *testing.T) {
 		Msgtype: "markdown",
 		Markdown: &MarkdownMsgDto{
 			Title: "消息标题01",
-			Text: markdownText,
+			Text:  markdownText,
 		}}
 	resp := SendWorkMsg(req, globalEnv.GetString("AccessTokenDemo"))
 	godingtalk.Debug(resp)

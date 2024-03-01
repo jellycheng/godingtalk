@@ -18,7 +18,7 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/jellychen
 ## Documentation
 [https://pkg.go.dev/github.com/jellycheng/godingtalk](https://pkg.go.dev/github.com/jellycheng/godingtalk)
 
-## 调用示例
+## 拼接钉钉登录地址
 ```
 package main
 
@@ -36,11 +36,32 @@ func main() {
 	redirectUri := "http://www.xxx.com/callback/dingdingtalk"
 	scope := "openid corpid"
 	state := ""
+	// 拼接钉钉登录地址
 	urlStr := godingtalk.GetLoginUrl(redirectUri, cfg.AppKey,scope,state)
 	fmt.Println(urlStr)
 
 }
 
+
+```
+
+## 企业内部应用获取access_token
+```
+package main
+
+import (
+	"fmt"
+	"github.com/jellycheng/godingtalk"
+)
+
+func main() {
+	cfg := godingtalk.DingAgentConfig{
+		AppKey:    "钉钉应用AppKey",
+		AppSecret: "钉钉应用AppSecret",
+	}
+	at := godingtalk.GetAccessToken(cfg)
+	fmt.Println(at.AccessToken)
+}
 
 ```
 
@@ -54,3 +75,12 @@ curl -X POST \
 '
 
 ```
+
+##  钉钉文档
+```
+钉钉开放平台： https://open.dingtalk.com
+创建h5微应用： https://open.dingtalk.com/document/orgapp/create-an-h5-micro-application
+
+
+```
+

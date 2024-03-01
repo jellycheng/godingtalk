@@ -8,16 +8,16 @@ import (
 	"strings"
 )
 
-func GetUrlContent(urlStr string, headers map[string]string) (string,error) {
+func GetUrlContent(urlStr string, headers map[string]string) (string, error) {
 	req, _ := http.NewRequest("GET", urlStr, nil)
-	for k,v := range headers {
+	for k, v := range headers {
 		req.Header.Add(k, v)
 	}
 	res, _ := http.DefaultClient.Do(req)
 
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	return string(body),nil
+	return string(body), nil
 }
 
 func PostUrlContnet4json(urlStr string, strJson string, headers map[string]string) (string, error) {
@@ -25,7 +25,7 @@ func PostUrlContnet4json(urlStr string, strJson string, headers map[string]strin
 	req, _ := http.NewRequest("POST", urlStr, payload)
 
 	req.Header.Add("content-type", "application/json")
-	for k,v := range headers {
+	for k, v := range headers {
 		req.Header.Add(k, v)
 	}
 
@@ -35,7 +35,7 @@ func PostUrlContnet4json(urlStr string, strJson string, headers map[string]strin
 	return string(body), nil
 }
 
-func JsonUnmarshal(str string, obj interface{}) error  {
+func JsonUnmarshal(str string, obj interface{}) error {
 	return json.Unmarshal([]byte(str), obj)
 }
 
@@ -48,6 +48,6 @@ func ToJson(v interface{}) string {
 	return string(b)
 }
 
-func Debug(msg interface{})  {
+func Debug(msg interface{}) {
 	fmt.Println(fmt.Sprintf("%+v", msg))
 }

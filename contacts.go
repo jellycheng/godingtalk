@@ -13,13 +13,13 @@ func GetDepartmentList(accessToken string, deptId int, language string) Departme
 	if language != "" {
 		lang = language
 	}
-	reqDto := DepartmentReqDto{Language:lang}
-	if deptId>0 {
+	reqDto := DepartmentReqDto{Language: lang}
+	if deptId > 0 {
 		reqDto.DeptID = deptId
 	}
 	urlStr := fmt.Sprintf(DepartmentUrl, DingOapiDomain, accessToken)
 	resp, _ := PostUrlContnet4json(urlStr, gosupport.ToJson(reqDto),
-					map[string]string{"content-type": "application/json",})
+		map[string]string{"content-type": "application/json"})
 	ret := DepartmentListRespDto{}
 	_ = JsonUnmarshal(resp, &ret)
 	return ret
@@ -30,15 +30,15 @@ func GetDepartmentListTree(accessToken string, deptId int, language string) ([]D
 	ret := []DepartmentSimpleTree{}
 	curDept := GetDepartmentList(accessToken, deptId, language)
 	if curDept.Errcode == 0 {
-		for _,v := range curDept.Result {
+		for _, v := range curDept.Result {
 			tmp := DepartmentSimpleTree{
-						AutoAddUser:v.AutoAddUser,
-						CreateDeptGroup:v.CreateDeptGroup,
-						DeptID:v.DeptID,
-						Name:v.Name,
-						ParentID:v.ParentID,
-					}
-			subDept,_ := GetDepartmentListTree(accessToken, v.DeptID, language)
+				AutoAddUser:     v.AutoAddUser,
+				CreateDeptGroup: v.CreateDeptGroup,
+				DeptID:          v.DeptID,
+				Name:            v.Name,
+				ParentID:        v.ParentID,
+			}
+			subDept, _ := GetDepartmentListTree(accessToken, v.DeptID, language)
 			tmp.SubDeptList = subDept
 			ret = append(ret, tmp)
 		}
@@ -47,24 +47,22 @@ func GetDepartmentListTree(accessToken string, deptId int, language string) ([]D
 		apiErr.Errmsg = curDept.Errmsg
 	}
 
-	return ret,apiErr
+	return ret, apiErr
 }
-
 
 // 获取指定部门的userid列表
 func GetDepartmentUseridList(accessToken string, deptId int) DeptUseridListRespDto {
 	urlStr := fmt.Sprintf(DepartmentUseridListUrl, DingOapiDomain, accessToken)
 	reqDto := struct {
 		DeptId int `json:"dept_id"`
-	}{DeptId:deptId}
+	}{DeptId: deptId}
 
 	resp, _ := PostUrlContnet4json(urlStr, gosupport.ToJson(reqDto),
-		map[string]string{"content-type": "application/json",})
+		map[string]string{"content-type": "application/json"})
 	ret := DeptUseridListRespDto{}
 	_ = JsonUnmarshal(resp, &ret)
 	return ret
 }
-
 
 // 获取指定用户的详细信息
 func GetUserInfo(accessToken string, userid string, lang string) UserProfileRespDto {
@@ -74,13 +72,13 @@ func GetUserInfo(accessToken string, userid string, lang string) UserProfileResp
 	}
 	reqDto := struct {
 		Language string `json:"language"`
-		Userid string `json:"userid"`
+		Userid   string `json:"userid"`
 	}{
-		Language:lang,
-		Userid:userid,
+		Language: lang,
+		Userid:   userid,
 	}
 	resp, _ := PostUrlContnet4json(urlStr, gosupport.ToJson(reqDto),
-		map[string]string{"content-type": "application/json",})
+		map[string]string{"content-type": "application/json"})
 
 	ret := UserProfileRespDto{}
 	_ = JsonUnmarshal(resp, &ret)

@@ -8,14 +8,15 @@ import (
 )
 
 var globalEnv = gosupport.NewGlobalEnvSingleton()
-func init()  {
+
+func init() {
 	err := env.LoadEnv2DataManage("./.env")
-	if err!=nil {
+	if err != nil {
 		fmt.Println(err.Error())
 	}
 }
 
-func main()  {
+func main() {
 	if globalEnv.GetString("IS_VERIFY") == "1" {
 		step01()
 	} else {
@@ -26,13 +27,13 @@ func main()  {
 		w.Write([]byte(""))
 	})
 
-	http.ListenAndServe(":" + globalEnv.GetString("APP_PORT"), nil)
+	http.ListenAndServe(":"+globalEnv.GetString("APP_PORT"), nil)
 }
 
-func step01()  {
+func step01() {
 
 }
 
-func dingTalkLogin()  {
+func dingTalkLogin() {
 
 }
