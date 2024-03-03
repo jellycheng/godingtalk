@@ -17,4 +17,7 @@ const (
 
 	// 发送工作通知
 	WorkNotifyMsgUrl = "%s/topapi/message/corpconversation/asyncsend_v2?access_token=%s"
+
+	// 根据手机号获取企业账号用户的userId
+	GetUseridByMobileUrl = "%s/topapi/v2/user/getbymobile?access_token=%s"
 )

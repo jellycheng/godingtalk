@@ -163,6 +163,29 @@ func main() {
 
 ```
 
+## 根据手机号获取企业账号用户的userId
+```
+package main
+
+import (
+	"fmt"
+	"github.com/jellycheng/godingtalk"
+)
+
+func main() {
+	req := godingtalk.GetUseridByMobileReqDto{
+		Mobile:                        "手机号",
+		SupportExclusiveAccountSearch: false,
+	}
+	accessToken := "1cd01dc304d434e988afd680561712fb" //调用接口：企业内部应用获取access_token
+	res := godingtalk.GetUseridByMobile(req, accessToken)
+	fmt.Println(res.Result.Userid)
+
+}
+
+```
+
+
 ##  钉钉文档
 ```
 钉钉开放平台： https://open.dingtalk.com
