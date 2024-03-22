@@ -11,7 +11,7 @@ go get -u github.com/jellycheng/godingtalk
 GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/jellycheng/godingtalk
 
 直接获取master分支代码：
-    go get -u github.com/jellycheng/godingtalk@master
+    go get -u github.com/jellycheng/godingtalk@main
     
 ```
 
@@ -185,6 +185,29 @@ func main() {
 
 ```
 
+## 查询钉钉用户详情
+```
+package main
+
+import (
+	"fmt"
+	"github.com/jellycheng/godingtalk"
+)
+
+func main() {
+	accessToken := "68e9ee0cac0035a295923b0bd7dbef76"                          //调用接口：企业内部应用获取access_token
+	userid := "18024719687686"                                                 //钉钉用户ID
+	userprofileRespDto := godingtalk.GetUserInfo(accessToken, userid, "zh_CN") // 查询钉钉用户信息，包括 unionid
+	if userprofileRespDto.Errcode == 0 {
+		fmt.Println(fmt.Sprintf("用户详情： %+v", userprofileRespDto.Result))
+		fmt.Println("Unionid: ", userprofileRespDto.Result.Unionid)
+	} else {
+		fmt.Println("错误：", userprofileRespDto.Errmsg)
+	}
+
+}
+
+```
 
 ##  钉钉文档
 ```
