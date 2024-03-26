@@ -116,3 +116,14 @@ type WorkNotifyRespDto struct {
 	TaskID    int64  `json:"task_id"`
 	RequestID string `json:"request_id"`
 }
+
+// 撤回工作消息: https://open.dingtalk.com/document/orgapp/notification-of-work-withdrawal
+type RecallWorkNotifyReqDto struct {
+	MsgTaskID int `json:"msg_task_id"` //发送消息时钉钉返回的任务ID
+	AgentID   int `json:"agent_id"`    //发送消息时使用的微应用的AgentID
+}
+
+type RecallWorkNotifyRespDto struct {
+	godingtalk.DingTalkApiErr2Dto
+	RequestID string `json:"request_id"`
+}
