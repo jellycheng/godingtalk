@@ -209,6 +209,82 @@ func main() {
 
 ```
 
+## 创建钉钉待办任务
+```
+package main
+
+import (
+	"fmt"
+	"github.com/jellycheng/godingtalk/todotask"
+)
+
+func main() {
+	at := "cb5673b689e132bc93ff6eede12fbe2a" // 访问凭证
+	unionId := "G5x1lVRm5TSw2JToFbkOmAiEiE"  // 钉钉用户unionId
+	operatorId := unionId
+	detailUrl := new(todotask.DetailURL)
+	detailUrl.PcURL = "https://www.php.net"    // PC端详情页url跳转地址
+	detailUrl.AppURL = "https://www.baidu.com" //APP端详情页url跳转地址
+
+	reqDto := todotask.CreateTodoTaskReqDto{
+		Subject:            "钉钉待办标题369",
+		CreatorID:          unionId, //创建者的unionId
+		Description:        "钉钉代办描述，你有xxx提交的审批单审批",
+		ExecutorIds:        []string{unionId},
+		IsOnlyShowExecutor: true,
+		DetailURL:          detailUrl,
+	}
+	respDto := todotask.CreateTodoTask(reqDto, at, unionId, operatorId)
+	fmt.Println(fmt.Sprintf("%+v", respDto))
+
+}
+
+```
+
+## 删除钉钉待办任务
+```
+package main
+
+import (
+	"fmt"
+	"github.com/jellycheng/godingtalk/todotask"
+)
+
+func main() {
+	at := "5bbb653cff473e279360c7c4755d6ecf" // 访问凭证
+	unionId := "G5x1lVRm5TSw2JToFbkOmAiEiE"  // 钉钉用户unionId
+	operatorId := unionId
+	taskId := "taska684c561500c8674e4f08a57c298f6f7" //任务ID
+
+	respDto := todotask.DeleteTodoTask(at, unionId, operatorId, taskId)
+	fmt.Println(fmt.Sprintf("%+v", respDto))
+
+}
+
+```
+
+## 更新钉钉待办任务完成
+```
+package main
+
+import (
+	"fmt"
+	"github.com/jellycheng/godingtalk/todotask"
+)
+
+func main() {
+	at := "5bbb653cff473e279360c7c4755d6ecf" // 访问凭证
+	unionId := "G5x1lVRm5TSw2JToFbkOmAiEiE"  // 钉钉用户unionId
+	operatorId := unionId
+	taskId := "taska731540ae5c7cba052df63a374336912" //任务ID
+	status := true // 更新任务完成
+	respDto := todotask.UpdateTodoTaskStatus(at, unionId,operatorId,taskId, status)
+	fmt.Println(fmt.Sprintf("%+v", respDto))
+
+}
+
+```
+
 ##  钉钉文档
 ```
 钉钉开放平台： https://open.dingtalk.com

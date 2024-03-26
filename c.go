@@ -20,4 +20,15 @@ const (
 
 	// 根据手机号获取企业账号用户的userId
 	GetUseridByMobileUrl = "%s/topapi/v2/user/getbymobile?access_token=%s"
+
+	// 创建钉钉待办任务 ?operatorId=
+	CreateTodoTaskUrl = "%s/v1.0/todo/users/%s/tasks%s"
+	// 删除钉钉待办任务 ?operatorId=
+	DeleteTodoTaskUrl = "%s/v1.0/todo/users/%s/tasks/%s%s"
+	// 查询企业下用户待办列表
+	GetTodoTaskUrl = "%s/v1.0/todo/users/%s/org/tasks/query"
+	// 更新待办任务状态 /v1.0/todo/users/{unionId}/tasks/{taskId}/executorStatus?operatorId=
+	UpdateTodoTaskStatusUrl = "%s/v1.0/todo/users/%s/tasks/%s/executorStatus%s"
+	// 更新待办任务信息 /v1.0/todo/users/{unionId}/tasks/{taskId}?operatorId=
+	UpdateTodoTaskInfoUrl = "%s/v1.0/todo/users/%s/tasks/%s%s"
 )
